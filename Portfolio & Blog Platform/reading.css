@@ -1,0 +1,266 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #0e0e0e;
+  color: #f2f2f2;
+  line-height: 1.75;
+  scroll-behavior: smooth;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ===== Progress Bar ===== */
+#progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 5px;
+  background: linear-gradient(90deg, #f3901c, #ffb347);
+  z-index: 1000;
+  transition: width 0.25s ease-out;
+}
+
+/* ===== Layout ===== */
+.layout {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  width: 90%;
+  max-width: 1200px;
+  margin: 100px auto 80px;
+}
+
+/* ===== TOC Sidebar ===== */
+.toc {
+  flex: 1;
+  background: #1a1a1a;
+  padding: 20px 25px;
+  border-radius: 14px;
+  position: sticky;
+  top: 100px;
+  height: fit-content;
+  border-left: 4px solid #f3901c;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.toc h3 {
+  color: #f3901c;
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #333;
+  padding-bottom: 5px;
+}
+
+.toc a {
+  display: block;
+  color: #ccc;
+  font-size: 0.95rem;
+  padding: 8px 0;
+  border-left: 2px solid transparent;
+  transition: all 0.25s ease;
+  padding-left: 8px;
+}
+
+.toc a:hover {
+  color: #fff;
+  padding-left: 14px;
+}
+
+.toc a.active {
+  color: #fff;
+  font-weight: 600;
+  border-left: 2px solid #f3901c;
+  padding-left: 14px;
+}
+
+/* ===== Content Area ===== */
+.content-area {
+  flex: 3;
+  background: #151515;
+  padding: 35px;
+  border-radius: 16px;
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.4);
+}
+
+img.cover {
+  width: 100%;
+  border-radius: 14px;
+  margin-bottom: 25px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.45);
+}
+
+h1 {
+  color: #f3901c;
+  font-size: 2.4rem;
+  line-height: 1.3;
+  margin-bottom: 10px;
+}
+
+.meta,
+.reading-time {
+  color: #b7b7b7;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+}
+
+.reading-time {
+  margin-bottom: 25px;
+  font-style: italic;
+}
+
+h2 {
+  color: #f3901c;
+  font-size: 1.5rem;
+  margin-top: 50px;
+  margin-bottom: 15px;
+  scroll-margin-top: 100px;
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 6px;
+}
+
+p {
+  margin-bottom: 18px;
+  color: #ddd;
+  text-align: justify;
+  font-size: 1rem;
+}
+
+ul {
+  margin-left: 25px;
+  margin-bottom: 20px;
+}
+
+li {
+  margin-bottom: 8px;
+}
+
+/* ===== Jump Button ===== */
+.jump-btn {
+  display: block;
+  text-align: center;
+  background: #f3901c;
+  color: #fff;
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-weight: 600;
+  width: fit-content;
+  margin: 30px auto;
+  transition: all 0.3s ease;
+}
+
+.jump-btn:hover {
+  background: #ffb347;
+  transform: translateY(-2px);
+}
+
+/* ===== Responsive ===== */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .layout {
+    width: 95%;
+    gap: 30px;
+  }
+
+  .content-area {
+    padding: 25px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* Medium Screens */
+@media (max-width: 900px) {
+  .layout {
+    flex-direction: column-reverse;
+    width: 92%;
+  }
+
+  .toc {
+    position: relative;
+    top: 0;
+    margin-bottom: 25px;
+    width: 100%;
+  }
+}
+
+/* Mobile Screens */
+@media (max-width: 600px) {
+  .layout {
+    margin: 80px auto 60px;
+    gap: 25px;
+  }
+
+  .content-area {
+    padding: 20px;
+    border-radius: 12px;
+  }
+
+  .toc {
+    padding: 15px 20px;
+    border-radius: 10px;
+  }
+
+  h1 {
+    font-size: 1.7rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    margin-top: 35px;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+
+  .jump-btn {
+    padding: 10px 20px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Small Mobiles */
+@media (max-width: 400px) {
+  .layout {
+    width: 90%;
+  }
+
+  .content-area {
+    padding: 15px;
+  }
+
+  .toc h3 {
+    font-size: 1rem;
+  }
+
+  .toc a {
+    font-size: 0.9rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio & Blog Platform</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="project.style.css" />
+    <link rel="stylesheet" href="footer.style.css" />
+    <link rel="stylesheet" href="skills.css" />
+    <link rel="stylesheet" href="blogs.css" />
+  </head>
+
+  <body>
+    <!-- ====== Navigation Bar ====== -->
+    <header class="navbar">
+      <div class="logo-area">
+        <img src="pic/logo.png" alt="Logo" class="nav-logo" loading="lazy" />
+        <h1>Abu Bakar-Portfolio</h1>
+      </div>
+
+      <div class="menu-toggle" id="menu-btn">
+        <i class="fas fa-bars"></i>
+      </div>
+
+      <nav class="nav-links" id="nav">
+        <a href="#home" class="active">Home</a>
+        <a href="#about">About</a>
+        <a href="#project">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#blogs">Blogs</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <!-- ====== Hero Section ====== -->
+    <section id="home" class="hero">
+      <div class="hero-text">
+        <h2>Hello, I'm Abu Bakar 👋</h2>
+        <p>
+          I am an undergraduate Computer Science student with a strong interest
+          in web development, problem-solving, communication, and teamwork.
+          Skilled in HTML, CSS, JavaScript, and C++. I enjoy learning new
+          technologies and applying them to real-world projects.
+        </p>
+      </div>
+      <img src="pic/bg.png.png" alt="Profile Picture" loading="lazy" />
+    </section>
+
+    <hr />
+
+    <!-- ====== About Section ====== -->
+    <section id="about" class="about">
+      <div class="about-container">
+        <h2>About Me</h2>
+        <p>
+          I am an undergraduate Computer Science student passionate about web
+          development, problem-solving, and teamwork. Skilled in
+          <strong>HTML</strong>, <strong>CSS</strong>,
+          <strong>JavaScript</strong>, and <strong>C++</strong>, I enjoy
+          exploring new technologies and applying them to real-world projects.
+        </p>
+      </div>
+    </section>
+    <hr />
+    <section id="project">
+      <h1>Projects</h1>
+
+      <!-- ===== FILTER BUTTONS ===== -->
+      <div class="filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="Websites">Web</button>
+        <button class="filter-btn" data-filter="Mini Apps">App</button>
+      </div>
+
+      <!-- ===== PROJECT GRID ===== -->
+      <div class="project-grid" id="projectGrid"></div>
+
+      <!-- ===== LOAD MORE BUTTON ===== -->
+      <button class="load-more" id="loadMore">Load More</button>
+
+      <!-- ===== MODAL ===== -->
+      <div class="modal" id="modal">
+        <div class="modal-content">
+          <span class="close" id="closeModal">&times;</span>
+          <button class="arrow prev" id="prev">&#10094;</button>
+          <button class="arrow next" id="next">&#10095;</button>
+          <img id="modalImg" src="" alt="Project Image" />
+          <h2 id="modalTitle"></h2>
+          <p id="modalDesc"></p>
+        </div>
+      </div>
+    </section>
+    <hr />
+    <!-- ===== Skills Section ===== -->
+    <section id="skills">
+      <h2 id="skills">💡 My Skills</h2>
+
+      <!-- Filter Buttons -->
+      <div class="buttons">
+        <button class="active" data-filter="all">All</button>
+        <button data-filter="frontend">Frontend</button>
+        <button data-filter="backend">Backend</button>
+        <button data-filter="tools">Tools</button>
+      </div>
+
+      <!-- Skill Cards -->
+      <div class="skills">
+        <div class="card frontend">
+          <h3>HTML <span class="num">0%</span></h3>
+          <div class="bar"><div class="fill" data-value="95"></div></div>
+          <p class="desc">Build web page structure using HTML.</p>
+        </div>
+
+        <div class="card frontend">
+          <h3>CSS <span class="num">0%</span></h3>
+          <div class="bar"><div class="fill" data-value="90"></div></div>
+          <p class="desc">Style and layout design with CSS.</p>
+        </div>
+
+        <div class="card frontend">
+          <h3>JavaScript <span class="num">0%</span></h3>
+          <div class="bar"><div class="fill" data-value="85"></div></div>
+          <p class="desc">Add interactivity to web pages.</p>
+        </div>
+
+        <div class="card backend">
+          <h3>Node.js <span class="num">0%</span></h3>
+          <div class="bar"><div class="fill" data-value="80"></div></div>
+          <p class="desc">Build servers and APIs.</p>
+        </div>
+
+        <div class="card backend">
+          <h3>MySQL <span class="num">0%</span></h3>
+          <div class="bar"><div class="fill" data-value="75"></div></div>
+          <p class="desc">Work with databases using SQL.</p>
+        </div>
+
+        <div class="card tools">
+          <h3>Git <span class="num">0%</span></h3>
+          <div class="bar"><div class="fill" data-value="85"></div></div>
+          <p class="desc">Version control and teamwork.</p>
+        </div>
+
+        <div class="card tools">
+          <h3>VS Code <span class="num">0%</span></h3>
+          <div class="bar"><div class="fill" data-value="90"></div></div>
+          <p class="desc">Code efficiently using VS Code.</p>
+        </div>
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="controls" id="blogs">
+    <h1 style="margin-right:10px">🚀 Blogs</h1>
+    <input type="text" id="search" placeholder="Search posts..." />
+    <select id="cat">
+      <option value="all">All</option>
+      <option>Web</option>
+      <option>Design</option>
+      <option>Tech</option>
+    </select>
+
+    <div class="tags" style="margin-left:auto">
+      <button class="tag active" data-tag="all">All</button>
+      <button class="tag" data-tag="HTML">#HTML</button>
+      <button class="tag" data-tag="CSS">#CSS</button>
+      <button class="tag" data-tag="JS">#JS</button>
+    </div>
+  </section>
+
+  <section class="blog" id="blogContainer">
+    <div class="card" id="card"></div>
+  </section>
+    <hr />
+    <!-- ====== Contact Section ====== -->
+    <section id="contact">
+      <h1>💬Contact</h1>
+      <div class="container" id="contact">
+        <!-- Form -->
+        <div class="form">
+          <h2>💬 Contact Us</h2>
+          <form id="contactForm">
+            <div class="input-group">
+              <input type="text" id="name" placeholder=" " /><label
+                >Your Name</label
+              >
+              <div id="nameError" class="error"></div>
+            </div>
+            <div class="input-group">
+              <input type="email" id="email" placeholder=" " /><label
+                >Your Email</label
+              >
+              <div id="emailError" class="error"></div>
+            </div>
+            <div class="input-group">
+              <textarea id="message" rows="4" placeholder=" "></textarea
+              ><label>Your Message</label>
+              <div id="messageError" class="error"></div>
+            </div>
+            <div class="button-wrapper">
+              <button type="submit">Send Message</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- Map -->
+        <div class="map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3398.4833460070054!2d74.347763!3d31.593213000000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzHCsDM1JzM1LjYiTiA3NMKwMjAnNTIuMCJF!5e0!3m2!1sen!2s!4v1760384970960!5m2!1sen!2s"
+            width="600"
+            height="450"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+      </div>
+    </section>
+    <footer class="footer" id="contact">
+  <div class="footer-wrapper">
+    <div class="footer-card about">
+      <div class="brand">
+        <img src="pic/logo.png" alt="logo" class="logo" loading="lazy" />
+        <h3>Abu Bakar</h3>
+      </div>
+      <p class="tagline">
+        “Building fast, beautiful websites that work everywhere.”
+      </p>
+      <p>
+        Passionate Frontend Developer focused on creating responsive and
+        user-friendly digital experiences.
+      </p>
+      <div class="contact">
+        <p><i class="fas fa-phone"></i> +92 3196205024</p>
+        <p><i class="fas fa-envelope"></i> abubakar.kamran22@gmail.com</p>
+      </div>
+    </div>
+
+    <div class="footer-card links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#">Projects</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Events</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-card links">
+      <h4>Helpful</h4>
+      <ul>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Support</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-card newsletter">
+      <h4>Subscribe</h4>
+      <p>Join the community to get the latest updates and tutorials.</p>
+      <form class="subscribe-form">
+        <input type="email" placeholder="Enter your email" />
+        <button>Join</button>
+      </form>
+      <div class="socials">
+        <a href="https://github.com/abubakar-arain" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:abubakar.kamran22@gmail.com"><i class="fab fa-google"></i></a>
+        <a href="https://x.com/ab_araien" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/abubaker-kamran-86a0b6254" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2025 Abu Bakar | Crafted with ❤️ using HTML, CSS & JS
+  </div>
+</footer>
+
+  </body>
+
+  <script src="project.js"></script>
+  <script src="blogs.js"></script>
+  <script src="script.js"></script>
+</html>
