@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Travel Booking Platform</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <header>
+    <h1>✈️ ExploreEase</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#map">Destinations</a>
+      <a href="#galleryGrid">Packages</a>
+      <a href="#Reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="home" class="booking-container" >
+    <h2>Book Your Dream Trip</h2>
+    <div class="step-indicator">
+      <div class="step active">1</div>
+      <div class="step">2</div>
+      <div class="step">3</div>
+      <div class="step">4</div>
+    </div>
+
+    <form id="bookingForm">
+      <div class="form-step active" id="step1">
+        <label>Destination</label>
+        <select id="destination" required onchange="updatePrice()">
+          <option value="">Select Destination</option>
+          <option value="paris">Paris</option>
+          <option value="tokyo">Tokyo</option>
+          <option value="dubai">Dubai</option>
+          <option value="maldives">Maldives</option>
+        </select>
+        <button class="btn" type="button" onclick="nextStep()">Next</button>
+      </div>
+
+      <!-- Step 2: Travel Dates -->
+      <div class="form-step" id="step2">
+        <h2 class="step-title">Select Your Travel Dates</h2>
+        <div class="calendar-wrapper">
+          <div class="calendar-header">
+            <button id="prevMonth" class="month-btn">❮</button>
+            <h3 id="monthLabel"></h3>
+            <button id="nextMonth" class="month-btn">❯</button>
+          </div>
+          <div class="calendar-grid" id="calendar"></div>
+          <p id="dateSummary">Pick your start and end dates</p>
+        </div>
+
+        <div class="form-buttons">
+          <button class="btn" type="button" onclick="prevStep()">Back</button>
+          <button class="btn" type="button" onclick="nextStep()">Next</button>
+        </div>
+      </div>
+
+      <div class="form-step" id="step3">
+        <label>Number of Travelers</label>
+        <input type="number" min="1" max="10" id="travelers" required onchange="updatePrice()" />
+        <button class="btn" type="button" onclick="prevStep()">Back</button>
+        <button class="btn" type="button" onclick="nextStep()">Next</button>
+      </div>
+
+      <div class="form-step" id="step4">
+        <label>Special Preferences</label>
+        <select id="preferences" onchange="updatePrice()">
+          <option value="">None</option>
+          <option value="luxury">Luxury</option>
+          <option value="adventure">Adventure</option>
+          <option value="family">Family</option>
+          <option value="budget">Budget</option>
+        </select>
+        
+        <!-- Enhanced Price Calculator Section -->
+        <div class="price-summary" id="priceSummary">
+          <h3>Price Summary</h3>
+          <div class="price-details">
+            <div class="price-row">
+              <span>Base Price:</span>
+              <span id="basePrice">$0</span>
+            </div>
+            <div class="price-row">
+              <span>Travelers:</span>
+              <span id="travelerCost">$0</span>
+            </div>
+            <div class="price-row">
+              <span>Preferences:</span>
+              <span id="preferenceCost">$0</span>
+            </div>
+            <div class="price-row total">
+              <span>Total:</span>
+              <span id="totalPrice">$0</span>
+            </div>
+          </div>
+          
+          <div class="currency-selector">
+            <button class="currency-btn active" data-currency="USD">USD</button>
+            <button class="currency-btn" data-currency="EUR">EUR</button>
+            <button class="currency-btn" data-currency="GBP">GBP</button>
+          </div>
+          
+          <button type="button" class="breakdown-btn" onclick="showBreakdown()">View Cost Breakdown</button>
+        </div>
+        
+        <button class="btn" type="button" onclick="prevStep()">Back</button>
+        <button class="btn" type="submit">Book Now</button>
+      </div>
+    </form>
+  </section>
+  
+  <!-- Enhanced Cost Breakdown Modal -->
+  <div class="modal" id="breakdownModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Cost Breakdown</h3>
+        <button class="close-modal" onclick="closeBreakdown()">&times;</button>
+      </div>
+      <div class="cost-details" id="costDetails">
+        <!-- Dynamic content will be inserted here -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Enhanced collapsible sections for mobile -->
+  <button class="collapsible"><span>Interactive Destination Map</span></button>
+  <section id="map" class="collapsible-content map-section">
+    <h2>Interactive Destination Map</h2>
+    <div class="map-container">
+      <svg id="interactive-map" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 1001">
+        <defs>
+          <linearGradient id="hoverGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#00b4d8" />
+            <stop offset="100%" stop-color="#7c3aed" />
+          </linearGradient>
+          <linearGradient id="activeGradient" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#7c3aed" />
+            <stop offset="100%" stop-color="#00b4d8" />
+          </linearGradient>
+        </defs>
+
+        <!-- Simplified clickable regions -->
+        <path class="region" data-name="North America" data-info="From the vibrant streets of New York to the calm of Canadian lakes — explore culture and adventure." d="M100,220 L300,180 L420,220 L400,300 L220,320 Z"/>
+        <path class="region" data-name="Europe" data-info="Wander through historic cities, savor world-class cuisines, and explore breathtaking landscapes." d="M900,200 L1100,220 L1120,340 L950,360 Z"/>
+        <path class="region" data-name="Asia" data-info="A continent of innovation and tradition — from Tokyo to Bangkok's temples." d="M1200,350 L1500,370 L1480,500 L1250,480 Z"/>
+        <path class="region" data-name="Africa" data-info="Safari adventures, ancient pyramids, and stunning beaches await across Africa." d="M850,500 L1050,520 L1080,700 L860,680 Z"/>
+        <path class="region" data-name="Australia" data-info="Dive the Great Barrier Reef or relax on Sydney's beaches — endless sunshine down under." d="M1600,700 L1800,720 L1750,850 L1580,820 Z"/>
+      </svg>
+
+      <div id="tooltip" class="tooltip"></div>
+      <div id="info-card" class="info-card">
+        <h3>Region</h3>
+        <p>Description will appear here when you select a destination.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🏨 Hotel & Package Gallery -->
+  <button class="collapsible"><span>Hotel & Package Gallery</span></button>
+  <section id="galleryGrid" class="collapsible-content gallery-section">
+    <h2>Hotel & Package Gallery</h2>
+
+    <div class="sort-bar">
+      <label for="sortOptions">Sort by:</label>
+      <select id="sortOptions" onchange="sortGallery()">
+        <option value="default">Default</option>
+        <option value="price">Price (Low to High)</option>
+        <option value="rating">Rating (High to Low)</option>
+        <option value="popularity">Popularity</option>
+      </select>
+    </div>
+
+    <div class="gallery" id="gallery">
+      <div class="card" data-price="999" data-rating="4.7" data-popularity="1200">
+        <img src="pic/paris.jpg" alt="Paris" loading="lazy" />
+        <div class="card-content">
+          <h3>Paris Getaway <span class="favorite" onclick="toggleFavorite(this)">♥</span></h3>
+          <p>From $999 | 4.7⭐ | 1200 bookings</p>
+        </div>
+      </div>
+
+      <div class="card" data-price="899" data-rating="4.8" data-popularity="1450">
+        <img src="pic/tokyo.jpg" alt="Tokyo" loading="lazy" />
+        <div class="card-content">
+          <h3>Tokyo Adventure <span class="favorite" onclick="toggleFavorite(this)">♥</span></h3>
+          <p>From $899 | 4.8⭐ | 1450 bookings</p>
+        </div>
+      </div>
+
+      <div class="card" data-price="799" data-rating="4.6" data-popularity="1100">
+        <img src="pic/dubai.jpg" alt="Dubai" loading="lazy" />
+        <div class="card-content">
+          <h3>Dubai Luxury Escape <span class="favorite" onclick="toggleFavorite(this)">♥</span></h3>
+          <p>From $799 | 4.6⭐ | 1100 bookings</p>
+        </div>
+      </div>
+
+      <div class="card" data-price="699" data-rating="4.5" data-popularity="900">
+        <img src="pic/maldives.jpg" alt="Maldives" loading="lazy" />
+        <div class="card-content">
+          <h3>Maldives Paradise <span class="favorite" onclick="toggleFavorite(this)">♥</span></h3>
+          <p>From $699 | 4.5⭐ | 900 bookings</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <button class="collapsible"><span>Customer Reviews</span></button>
+   <section class="reviews-section" id="Reviews">
+        <h2>Customer Reviews</h2>
+        <div id="reviews-container"></div>
+        <button id="loadMore">Load More</button>
+    </section>
+  <section id="contact" class="contact">
+  <div class="info">
+    <h2>Get in Touch</h2>
+    <p>We’d love to hear from you. Let’s connect today.</p>
+    <div><strong>📧 Email:</strong> abubakar.kamran22@gmail.com</div>
+    <div><strong>📞 Phone:</strong> +92 319 6205024</div>
+    <div><strong>📍 Location:</strong> Lahore, Pakistan</div>
+  </div>
+
+  <form class="form">
+    <input type="text" placeholder="Your Name" required>
+    <input type="email" placeholder="Your Email" required>
+    <textarea placeholder="Your Message" required></textarea>
+    <button type="submit">Send Message</button>
+  </form>
+</section>
+<footer class="travel-footer">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <h2>✈️ ExploreEase</h2>
+      <p>Explore the world with comfort & trust.</p>
+    </div>
+
+    <div class="footer-links">
+      <h3>Explore</h3>
+      <ul>
+        <li><a href="#">Destinations</a></li>
+        <li><a href="#">Book Now</a></li>
+        <li><a href="#">Special Offers</a></li>
+        <li><a href="#">Support</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-contact">
+      <h3>Contact</h3>
+      <p>Email: abubakar.kamran22@gmail.com</p>
+      <p>Phone: +92 0319-6205024</p>
+      <p>Location: Lahore,Pakistan</p>
+    </div>
+  </div>
+
+  <div class="footer-social">
+    <a href="#">Instagram</a>
+    <a href="#">Facebook</a>
+    <a href="#">YouTube</a>
+    <a href="#">Twitter</a>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2025 ✈️ ExploreEase. All Rights Reserved.</p>
+  </div>
+</footer>
+
+
+
+<script src="main.js"></script>
+</body>
+</html>
