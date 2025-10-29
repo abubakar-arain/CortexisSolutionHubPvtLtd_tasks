@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitTrack Pro - Fitness App</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container container">
+            <div class="nav-logo">
+                <i class="fas fa-dumbbell"></i>
+                <span>FitTrack Pro</span>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                <li class="nav-item"><a href="#workout" class="nav-link">Workout</a></li>
+                <li class="nav-item"><a href="#nutrition" class="nav-link">Nutrition</a></li>
+                <li class="nav-item"><a href="#stats" class="nav-link">Statistics</a></li>
+                <li class="nav-item"><a href="#exercises" class="nav-link">Exercises</a></li>
+            </ul>
+            <div class="nav-buttons">
+                <button class="theme-btn" id="theme-toggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Bottom Navigation for Mobile -->
+    <div class="bottom-nav">
+        <a href="#dashboard" class="nav-icon active">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+        </a>
+        <a href="#workout" class="nav-icon">
+            <i class="fas fa-running"></i>
+            <span>Workout</span>
+        </a>
+        <a href="#nutrition" class="nav-icon">
+            <i class="fas fa-apple-alt"></i>
+            <span>Nutrition</span>
+        </a>
+        <a href="#stats" class="nav-icon">
+            <i class="fas fa-chart-bar"></i>
+            <span>Stats</span>
+        </a>
+    </div>
+
+    <!-- Main Content -->
+    <main class="main-content container">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <h1 class="section-title">Dashboard</h1>
+            <div class="dashboard-content">
+                <div class="card greeting-card">
+                    <h2>Hello, Abubakar!</h2>
+                    <p>You're making great progress. Keep up the good work!</p>
+                    <div class="goal-list">
+                        <div class="goal-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Complete 30-minute workout</span>
+                        </div>
+                        <div class="goal-item">
+                            <i class="fas fa-running"></i>
+                            <span>Reach 10,000 steps today</span>
+                        </div>
+                        <div class="goal-item">
+                            <i class="fas fa-apple-alt"></i>
+                            <span>Stay within calorie goal</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Today's Progress</h3>
+                    <div class="progress-rings">
+                        <div class="ring-container">
+                            <div class="ring" data-percent="75">
+                                <div class="ring-text">
+                                    <span class="ring-value">75%</span>
+                                    <span class="ring-label">Steps</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ring-container">
+                            <div class="ring" data-percent="60">
+                                <div class="ring-text">
+                                    <span class="ring-value">60%</span>
+                                    <span class="ring-label">Calories</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ring-container">
+                            <div class="ring" data-percent="90">
+                                <div class="ring-text">
+                                    <span class="ring-value">90%</span>
+                                    <span class="ring-label">Workout</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Weekly Activity</h3>
+                    <div class="activity-chart">
+                        <svg class="chart-svg" viewBox="0 0 300 150">
+                            <polyline class="chart-line" points="10,140 50,120 90,100 130,80 170,60 210,100 250,120 290,80" />
+                            <circle class="chart-point" cx="10" cy="140" r="3" />
+                            <circle class="chart-point" cx="50" cy="120" r="3" />
+                            <circle class="chart-point" cx="90" cy="100" r="3" />
+                            <circle class="chart-point" cx="130" cy="80" r="3" />
+                            <circle class="chart-point" cx="170" cy="60" r="3" />
+                            <circle class="chart-point" cx="210" cy="100" r="3" />
+                            <circle class="chart-point" cx="250" cy="120" r="3" />
+                            <circle class="chart-point" cx="290" cy="80" r="3" />
+                        </svg>
+                        <div class="chart-labels">
+                            <span>Mon</span>
+                            <span>Tue</span>
+                            <span>Wed</span>
+                            <span>Thu</span>
+                            <span>Fri</span>
+                            <span>Sat</span>
+                            <span>Sun</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Workout Builder Section -->
+        <section id="workout" class="section">
+            <h1 class="section-title">Workout Builder</h1>
+            <div class="workout-controls">
+                <div class="timer-display" id="timer-display">00:00</div>
+                <button class="btn btn-primary" id="start-timer">
+                    <i class="fas fa-play"></i> Start Timer
+                </button>
+            </div>
+            
+            <div class="workout-builder">
+                <div class="card">
+                    <h3>Exercise Library</h3>
+                    <div class="category-tabs">
+                        <button class="category-tab active" data-category="cardio">Cardio</button>
+                        <button class="category-tab" data-category="strength">Strength</button>
+                        <button class="category-tab" data-category="yoga">Yoga</button>
+                    </div>
+                    <div class="exercise-list" id="exercise-list">
+                        <!-- Exercises will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>My Workout Plan</h3>
+                    <div class="workout-dropzone" id="workout-dropzone">
+                        <p class="dropzone-placeholder">Drag exercises here to build your workout</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Nutrition Tracker Section -->
+        <section id="nutrition" class="section">
+            <h1 class="section-title">Nutrition Tracker</h1>
+            
+            <div class="card">
+                <h3>Daily Nutrition</h3>
+                <div class="progress-bars">
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Calories</span>
+                            <span>1450 / 2000</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 72.5%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Protein</span>
+                            <span>65g / 100g</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Carbs</span>
+                            <span>180g / 250g</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 72%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-label">
+                            <span>Fat</span>
+                            <span>40g / 65g</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 61.5%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Today's Meals</h3>
+                <div class="meal-tabs">
+                    <button class="meal-tab active" data-meal="breakfast">Breakfast</button>
+                    <button class="meal-tab" data-meal="lunch">Lunch</button>
+                    <button class="meal-tab" data-meal="dinner">Dinner</button>
+                    <button class="meal-tab" data-meal="snacks">Snacks</button>
+                </div>
+                
+                <div class="meal-list" id="meal-list">
+                    <!-- Meal items will be populated by JavaScript -->
+                </div>
+                
+                <div class="nutrition-search">
+                    <input type="text" placeholder="Search for food...">
+                    <button class="btn btn-primary" id="add-food-btn">
+                        <i class="fas fa-plus"></i> Add
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section id="stats" class="section">
+            <h1 class="section-title">Statistics</h1>
+            
+            <div class="stats-tabs">
+                <button class="stats-tab active" data-period="day">Day</button>
+                <button class="stats-tab" data-period="week">Week</button>
+                <button class="stats-tab" data-period="month">Month</button>
+            </div>
+            
+            <div class="stats-charts">
+                <div class="chart-container">
+                    <h3>Steps</h3>
+                    <div class="bar-chart" id="steps-chart">
+                        <!-- Steps chart will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="chart-container">
+                    <h3>Calories Burned</h3>
+                    <div class="bar-chart" id="calories-chart">
+                        <!-- Calories chart will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            
+            <div class="achievements">
+                <h3>Achievements</h3>
+                <div class="badge-container">
+                    <div class="badge unlocked">
+                        <div class="badge-icon">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <div class="badge-title">10K Steps</div>
+                    </div>
+                    <div class="badge unlocked">
+                        <div class="badge-icon">
+                            <i class="fas fa-fire"></i>
+                        </div>
+                        <div class="badge-title">Calorie Burner</div>
+                    </div>
+                    <div class="badge locked">
+                        <div class="badge-icon">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                        <div class="badge-title">Strength Master</div>
+                    </div>
+                    <div class="badge locked">
+                        <div class="badge-icon">
+                            <i class="fas fa-infinity"></i>
+                        </div>
+                        <div class="badge-title">Consistency King</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Exercise Demonstrations Section -->
+        <section id="exercises" class="section">
+            <h1 class="section-title">Exercise Demonstrations</h1>
+            
+            <div class="exercise-demo">
+                <div class="exercise-info">
+                    <h3>Proper Squat Form</h3>
+                    <p class="exercise-description">
+                        Squats are a fundamental lower body exercise that targets your glutes, quads, and hamstrings. Proper form is essential to prevent injury and maximize effectiveness.
+                    </p>
+                    <div class="exercise-steps">
+                        <h4>Steps:</h4>
+                        <ol>
+                            <li>Stand with feet shoulder-width apart</li>
+                            <li>Keep your chest up and back straight</li>
+                            <li>Lower your body as if sitting in a chair</li>
+                            <li>Go as low as comfortable while keeping heels on the ground</li>
+                            <li>Push through your heels to return to starting position</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div class="video-container">
+                    <video id="exercise-video" poster="https://via.placeholder.com/400x300?text=Squat+Demo">
+                        <!-- In a real app, you would have actual video files -->
+                        <source src="#" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="video-controls">
+                        <button class="btn btn-primary" id="play-pause">
+                            <i class="fas fa-play"></i>
+                        </button>
+                        <button class="btn btn-outline" id="fullscreen-btn">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="exercise-list-demo">
+                <h3>Other Exercises</h3>
+                <div class="exercise-cards">
+                    <div class="exercise-card">
+                        <div class="exercise-img">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h4>Push-Ups</h4>
+                        <p>Chest & Arms</p>
+                    </div>
+                    <div class="exercise-card">
+                        <div class="exercise-img">
+                            <i class="fas fa-walking"></i>
+                        </div>
+                        <h4>Lunges</h4>
+                        <p>Legs & Glutes</p>
+                    </div>
+                    <div class="exercise-card">
+                        <div class="exercise-img">
+                            <i class="fas fa-hands"></i>
+                        </div>
+                        <h4>Plank</h4>
+                        <p>Core Strength</p>
+                    </div>
+                    <div class="exercise-card">
+                        <div class="exercise-img">
+                            <i class="fas fa-arrows-alt-v"></i>
+                        </div>
+                        <h4>Deadlifts</h4>
+                        <p>Back & Legs</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Offline Notice -->
+    <div class="offline-notice" id="offline-notice">
+        <i class="fas fa-wifi"></i> You are currently offline
+    </div>
+
+    <!-- Swipe Indicator for Mobile -->
+    <div class="swipe-indicator" id="swipe-indicator">
+        Swipe to navigate
+    </div>
+</body>
+<script src="data.js"></script>
+<script src="main.js"></script>
+</html>
